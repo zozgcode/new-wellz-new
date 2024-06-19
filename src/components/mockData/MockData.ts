@@ -91,7 +91,7 @@ export const mockAccounts: Account[] = [
       balance_usd: 3700000.0,
     },
     transaction_mgs_code: {
-      transaction_text_msg: "WTC WIRE TRANSFER CODE",
+      transaction_text_msg: "WTC - WIRE TRANSFER CODE",
       transaction_code: "29372326437846234234234523463",
     },
     transaction_history: [

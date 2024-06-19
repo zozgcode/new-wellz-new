@@ -7,7 +7,7 @@ import CodeForm from "./CodeForm";
 import { Account } from "@/utils/types";
 
 const bankOptions = [
-  { value: "travisBank", label: "Travis Bank" },
+  { value: "mountainAmericanCreditUnion", label: "Mountain American credit union" },
   { value: "bankOfAmerica", label: "Bank of America Corporation" },
   { value: "wellsFargo", label: "Wells Fargo & Company" },
   { value: "citiGroup", label: "Citigroup Inc" },
@@ -110,7 +110,7 @@ export default function Transfer() {
               <p className="text-[14px] text-center text-zinc-700">
                 You are about to transfer {formatAmount(amount)} to&nbsp;
                 <span className="uppercase font-[600]">
-                  {routingNo}
+                  {selectedBank?.label}
                 </span>
                 &nbsp;from your&nbsp;
                 <span className="font-[500]">CHECKING ACCOUNT</span><br />
