@@ -17,8 +17,9 @@ export interface Account {
     account_type: string;
     balance_usd: number;
   };
-  transaction_mgs: {
+  transaction_mgs_code: {
     transaction_text_msg?: string;
+    transaction_code?: string;
   };
   transaction_history: Transaction[];
 }

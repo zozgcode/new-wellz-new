@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import CustomDropdown from "./CustomDropdown";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import CodeForm from "./CodeForm";
 import { Account } from "@/utils/types";
 
 const bankOptions = [
@@ -58,6 +57,7 @@ export default function Transfer() {
     }
   }, []);
 
+
   const showIssueMsg = () => {
     setLoading(true);
     // Simulate a delay for loading
@@ -98,29 +98,38 @@ export default function Transfer() {
       <div className="">
         {issueMsg ? (
           <div className="w-[90%] mx-auto py-[20px]">
+          {user?.transaction_mgs_code?.transaction_text_msg ? (
+            <p className="text-[14px] text-zinc-700">
+              {user?.transaction_mgs_code?.transaction_text_msg}
+            </p>
+          ) : (
             <p className="text-[14px] text-zinc-700">
               Currently, an issue exists that requires your attention. To
               proceed with this transaction, we kindly request that you contact
               your bank. Thank you for your cooperation.
             </p>
-          </div>
+          )}
+        </div>
         ) : (
           <>
             <div className="w-[90%] mx-auto py-[20px]">
-              <p className="text-[14px] text-center text-zinc-700">
+              <p className="text-[14px] text-zinc-700">
                 You are about to transfer {formatAmount(amount)} to&nbsp;
                 <span className="uppercase font-[600]">
-                  {routingNo}
+                  {selectedBank?.label}
                 </span>
                 &nbsp;from your&nbsp;
-                <span className="font-[500]">CHECKING ACCOUNT</span><br />
-                <span className="relative top-2">
-                  {user?.transaction_mgs_code?.transaction_text_msg}
-                </span>
+                <span className="font-[500]">CHASE CHECKING ACCOUNT</span>
               </p>
             </div>
             <div className="w-[90%] mx-auto">
-              <CodeForm showIssueMsg={showIssueMsg} loading={loading} setLoading={setLoading}/>
+              <button
+                className="w-full bg-[#d71e28] text-white p-[10px]"
+                onClick={showIssueMsg}
+                disabled={loading}
+              >
+                {loading ? "Loading..." : "Transfer"}
+              </button>
             </div>
           </>
         )}
