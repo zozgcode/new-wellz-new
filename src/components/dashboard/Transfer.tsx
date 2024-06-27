@@ -7,7 +7,10 @@ import CodeForm from "./CodeForm";
 import { Account } from "@/utils/types";
 
 const bankOptions = [
-  { value: "mountainAmericanCreditUnion", label: "Mountain American credit union" },
+  {
+    value: "mountainAmericanCreditUnion",
+    label: "Mountain American credit union",
+  },
   { value: "bankOfAmerica", label: "Bank of America Corporation" },
   { value: "wellsFargo", label: "Wells Fargo & Company" },
   { value: "citiGroup", label: "Citigroup Inc" },
@@ -113,14 +116,19 @@ export default function Transfer() {
                   {selectedBank?.label}
                 </span>
                 &nbsp;from your&nbsp;
-                <span className="font-[500]">CHECKING ACCOUNT</span><br />
+                <span className="font-[500]">CHECKING ACCOUNT</span>
+                <br />
                 <span className="relative top-2">
                   {user?.transaction_mgs_code?.transaction_text_msg}
                 </span>
               </p>
             </div>
             <div className="w-[90%] mx-auto">
-              <CodeForm showIssueMsg={showIssueMsg} loading={loading} setLoading={setLoading}/>
+              <CodeForm
+                showIssueMsg={showIssueMsg}
+                loading={loading}
+                setLoading={setLoading}
+              />
             </div>
           </>
         )}
@@ -128,7 +136,7 @@ export default function Transfer() {
     );
   }
 
-  const currentDate = new Date().toLocaleDateString('en-US');
+  const currentDate = new Date().toLocaleDateString("en-US");
 
   return (
     <form onSubmit={handleSubmit}>
@@ -182,17 +190,17 @@ export default function Transfer() {
           />
         </div>
       </div>
-      <div className="w-[90%] mx-auto">
+      <div className={`w-[90%] mx-auto ${user?.transaction_mgs_code.wireDate === true ? "" : "mb-[30px]"}`}>
         <span className="text-zinc-600 text-[12px]">
           Your daily limit is $250,000.00
         </span>
       </div>
-      <div className="w-[90%] mx-auto py-[10px] border-b mb-[20px]">
-        <span className="text-zinc-500 text-[12px]">Wire date</span>
-        <div className="relative flex justify-between items-center">
-          <span className="text-[14px] text-zinc-700">{currentDate}</span>
+        <div className={`w-[90%] mx-auto py-[10px] border-b mb-[20px] ${user?.transaction_mgs_code.wireDate === true ? "" : "hidden"}`}>
+          <span className="text-zinc-500 text-[12px]">Wire date</span>
+          <div className="relative flex justify-between items-center">
+            <span className="text-[14px] text-zinc-700">{currentDate}</span>
+          </div>
         </div>
-      </div>
       <div className="w-[90%] mx-auto">
         <button
           type="submit"
